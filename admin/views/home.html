@@ -1,0 +1,84 @@
+<div class="container users-list-container" data-ng-controller="HomeController">
+    <div class="menu-bar">
+        <nav class="navbar navbar-default">
+            <div >
+                <ul class="nav navbar-nav navbar-left">
+                    <li data-ng-class="{'active': selection == 'users'}"><a href="#" data-ng-click="selection = 'users'">Users</a></li>
+                    <li  data-ng-show="selectedUser.data != undefined" data-ng-class="{'active': selection == 'selectedUser'}"><a href="#" data-ng-click="selection = 'selectedUser'">Selected User</a></li>
+                </ul>
+                <form data-ng-show="selection == 'users'" class="navbar-form navbar-right form-inline" role="search">
+                    <div class="input-group">
+                        <label class="sr-only" for="user-search">File input</label>
+                        <span class="input-group-addon">
+                            <i class="material-icons md-18">search</i>
+                        </span>
+                        <input data-ng-model="searchValue" type="text" id="user-search" class="form-control"
+                               placeholder="Search"/>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+    </div>
+
+    <div class="users-container" data-ng-show="selection == 'users'">
+        <table class="table table-bordered table-responsive">
+            <thead>
+            <tr>
+                <th>S.N.</th>
+                <th>Fist Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Documents</th>
+                <th>Delete User</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="user in users | filter:searchValue | orderBy:'firstName'">
+                <td>{{$index+1}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td data-ng-click="userDocuments(user)"><a href="#">Documents</a></td>
+                <td data-ng-click="deleteUser(user)"><a href="#">Delete</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="users-info-container" data-ng-show="selection == 'selectedUser'">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">User Info</h3>
+            </div>
+            <div class="panel-body">
+                <p class="col-sm-6"> <b><em>Name</em></b>  : {{selectedUser.data.firstName +" "+ selectedUser.data.lastName}}</p>
+                <p class="col-sm-6"> <b><em>Email</em></b> : {{selectedUser.data.email}}</p>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Documents</h3>
+            </div>
+            <div class="panel-body">
+                <p data-ng-show="selectedUser.files.length == 0">No file uploaded</p>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6" data-ng-repeat="file in selectedUser.files">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">{{file.type}}</div>
+                            </div>
+                            <div class="panel-body">
+                                <p><b><em>File Name</em></b> : {{file.name}}</p>
+                                <p><b><em>File Description</em></b> : {{file.description}}</p>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-danger" title="Delete file" data-ng-click="deleteFile(selectedUser.data.id, file)"> <i class="material-icons md-18">delete</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

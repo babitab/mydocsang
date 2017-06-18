@@ -1,0 +1,58 @@
+<div class="container" data-ng-controller="HomeController">
+    <div class="row user-documents" >
+        <div class="title">
+            <h3>Uploaded Documents</h3>
+         </div>
+        <div class="col-sm-12 no-files"  data-ng-show="userFiles.length == 0">
+                <p class="no-documents">No document have been uploaded.</p>
+        </div>
+        <div id="fileDiv" class="row" data-ng-hide="userFiles.length == 0" >
+            <div class="types col-sm-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title">Filter Documents</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox" data-ng-repeat="docType in docTypes">
+                            <label><input type="checkbox"  data-ng-click="addFilter($index)">{{docType}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="documents col-sm-9">
+                <div class="col-sm-6" data-ng-repeat="document in userFiles | DocFilter:docFilter ">
+                    <div class="document panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                {{document.type}}
+                            </div>
+                        </div>
+                        <div class="row panel-body">
+                            <div class="col-sm-4 key">
+                                Description
+                            </div>
+                            <div class="col-sm-8 value document-description">
+                                {{document.description}}
+                            </div>
+                            <div class="col-xs-6 action download">
+
+                            </div>
+                            <div class="col-xs-6">
+
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <span class=" action download">
+                                <a title="Download"  data-ng-href="./../api/download.php?fileName={{document.tmpName}}&actualName={{document.name}}" ><span class="material-icons md-18">file_download</span></a>
+                            </span>
+                            <span class="action delete">
+                                <a title="Delete"  href="#" data-ng-click="deleteFile(document)"><span class="material-icons md-18">delete</span></a>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

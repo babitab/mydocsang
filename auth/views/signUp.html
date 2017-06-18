@@ -1,0 +1,94 @@
+<div class="signup-container" data-ng-controller="SignUpController">
+    <h3>Sign up</h3>
+
+    <form id="signUpForm" name="signUpForm" data-ng-submit="signUp()">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{
+                        'error': signUpForm.firstName.$dirty && signUpForm.firstName.$error.required,
+                        'warning': signUpForm.firstName.$dirty && (signUpForm.firstName.$error.minlength || signUpForm.firstName.$error.maxlength) && !signUpForm.firstName.$error.required,
+                        'ok' : signUpForm.firstName.$dirty && signUpForm.firstName.$valid
+                        }"
+                        >
+                    <input type="text" name="firstName" id="firstName" class="form-control" required
+                           data-ng-minlength="3" data-ng-maxlength="20"
+                           data-ng-class="{'has-value': newUser.firstName != ''}" data-ng-model="newUser.firstName"/>
+                    <label for="firstName">First Name*</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{
+                        'warning': signUpForm.lastName.$dirty && signUpForm.lastName.$error.maxlength,
+                        'ok' : signUpForm.lastName.$dirty && signUpForm.lastName.$valid
+                    }"
+                        >
+                    <input type="text" name="lastName" id="lastName" class="form-control"
+                           data-ng-maxlength="20"
+                           data-ng-class="{'has-value': newUser.lastName != ''}"
+                           data-ng-model="newUser.lastName"
+                            />
+                    <label for="lastName">Last Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group"
+                     data-ng-class="{
+                        'error': signUpForm.email.$dirty && signUpForm.email.$error.required,
+                        'warning': signUpForm.email.$dirty && signUpForm.email.$invalid && !signUpForm.email.$error.required,
+                        'ok' : signUpForm.email.$dirty && signUpForm.email.$valid
+                    }"
+                        >
+                    <input type="email" name="email" id="email" class="form-control"
+                           data-ng-class="{'has-value': newUser.email != ''}"
+                           data-ng-model="newUser.email"
+                            />
+                    <label for="email">Email*</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{
+                        'error': signUpForm.password.$dirty && signUpForm.password.$error.required,
+                        'warning': signUpForm.password.$dirty && signUpForm.password.$error.minlength && !signUpForm.password.$error.required,
+                        'ok' : signUpForm.password.$dirty && signUpForm.password.$valid
+                    }"
+                        >
+                    <input type="password" name="password" id="password" class="form-control"
+                           data-ng-minlength="6"
+                           data-ng-class="{'has-value': newUser.password != ''}"
+                           data-ng-model="newUser.password"
+                            />
+                    <label for="password">Password*</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{
+                        'error': signUpForm.repassword.$dirty && signUpForm.repassword.$error.required,
+                        'warning': signUpForm.repassword.$dirty && signUpForm.repassword.$modelValue != signUpForm.password.$modelValue && !signUpForm.repassword.$error.required,
+                        'ok' : signUpForm.repassword.$dirty && signUpForm.repassword.$valid
+                    }"
+                        >
+                    <input type="password" name="repassword" id="repassword" class="form-control"
+                           data-ng-class="{'has-value': newUser.repassword != ''}"
+                           data-ng-model="newUser.repassword"
+                           data-ng-pattern="{{signUpForm.password.$modelValue}}"
+                            />
+                    <label for="repassword">Re-Password*</label>
+                </div>
+            </div>
+        </div>
+        <div id="signup">
+            <button type="submit"  data-ng-disabled="signUpForm.$invalid">Submit</button>
+        </div>
+    </form>
+    <div class="other-options">
+        <a ui-sref="login">Already have an account ?</a>
+    </div>
+</div>

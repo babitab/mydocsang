@@ -1,0 +1,26 @@
+<div class="menu-bar" data-ng-controller="MenuController">
+    <nav class="navbar navbar-inverse navar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-items">
+                    <span class="material-icons md-light">menu</span>
+                </button>
+                <a class="navbar-brand" ui-sref="home"> <span class="material-icons ">work</span> MyDocs</a>
+            </div>
+            <div class="pull-right collapse navbar-collapse" id="navbar-collapse-items">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="material-icons ">account_box</span>
+                            <span >{{user.firstName}}</span>
+                            <span class="material-icons ">arrow_drop_down</span>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li data-ng-click="logout()"><a href="#" id="logout"> <span class="material-icons ">power_settings_new</span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

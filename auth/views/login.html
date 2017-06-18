@@ -1,0 +1,41 @@
+<div class="login-container" data-ng-controller="LoginController">
+    <h3>Login</h3>
+    <!-- action='#' means the current page -->
+    <form id="loginForm" name="loginForm" data-ng-submit="login()" novalidate="novalidate">
+        <div class="input-group"
+                data-ng-class="{
+                    'error': loginForm.email.$dirty && loginForm.email.$error.required,
+                    'warning': loginForm.email.$dirty && loginForm.email.$invalid && !loginForm.email.$error.required,
+                    'ok' : loginForm.email.$dirty && loginForm.email.$valid
+                }"
+                >
+				<span class="input-group-addon">
+					<span class="material-icons md-light">email</span>
+				</span>
+            <input class="form-control" type="email" name="email" id="email"  placeholder="Email" required
+                   data-ng-model="user.email"
+                  />
+        </div>
+        <div class="input-group"
+             data-ng-class="{
+                    'error': loginForm.password.$dirty && loginForm.password.$error.required,
+                    'ok' : loginForm.password.$dirty && loginForm.password.$valid
+                }"
+                >
+				<span class="input-group-addon">
+					<span class="material-icons md-light">vpn_key</span>
+				</span>
+            <input class="form-control" type="password" name="password" id="password" required
+                   data-ng-model="user.password"
+                   placeholder="Password" />
+        </div>
+
+        <div id="login">
+            <button type="submit" data-ng-disabled="loginForm.$invalid">Login</button>
+        </div>
+    </form>
+    <div class="other-options">
+        <a ui-sref="signUp">Need an account ?</a>
+    </div>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="menu-bar" data-ng-controller="MenuController">
+    <nav class="navbar navbar-inverse navar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-items">
+                    <span class="material-icons md-light">menu</span>
+                </button>
+                <a class="navbar-brand" ui-sref="home"> <span class="material-icons ">work</span> MyDocs</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="navbar-collapse-items">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="home"> <span class="material-icons ">home</span> Home</a></li>
+                    <li ui-sref-active="active"><a ui-sref="fileUpload"> <span class="material-icons ">file_upload</span> Upload</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="material-icons ">account_box</span>
+                            <span >{{userData.firstName}}</span>
+                            <span class="material-icons ">arrow_drop_down</span>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li ui-sref-active="active"><a ui-sref="updateProfile"> <span class="material-icons ">face</span> Update Profile</a></li>
+                            <li ui-sref-active="active"><a ui-sref="changePassword"> <span class="material-icons ">lock</span> Change Password</a></li>
+                            <li class="divider"></li>
+                            <li data-ng-click="logout()"><a href="#" id="logout"> <span class="material-icons ">power_settings_new</span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
